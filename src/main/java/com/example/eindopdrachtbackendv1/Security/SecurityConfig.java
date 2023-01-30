@@ -15,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig  {
 
     private final JwtService jwtService;
     private final UserRepository userRepository;
@@ -52,62 +52,44 @@ public class SecurityConfig {
                 .cors().and()
                 .authorizeRequests()
 
+                .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
 
-                .antMatchers(HttpMethod.POST, "/auth").permitAll()
-                .antMatchers(HttpMethod.GET, "/auth").permitAll()
-                .antMatchers(HttpMethod.PUT, "/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/auth/**").permitAll()
+                .antMatchers(HttpMethod.PUT, "/auth/**").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/users").permitAll()
-                .antMatchers(HttpMethod.GET, "/users").permitAll()
-                .antMatchers(HttpMethod.PUT, "/users").permitAll()
+                .antMatchers(HttpMethod.POST, "/users/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/users/**").permitAll()
+                .antMatchers(HttpMethod.PUT,"/users/**").permitAll()
 
 
-                .antMatchers(HttpMethod.POST, "/upload").permitAll()
-                .antMatchers(HttpMethod.GET, "/upload").permitAll()
-                .antMatchers(HttpMethod.PUT, "/upload").permitAll()
+                .antMatchers(HttpMethod.POST, "/uploads/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/uploads/**").permitAll()
+                .antMatchers(HttpMethod.PUT,"/uploads/**").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/fishingspot").permitAll()
-                .antMatchers(HttpMethod.GET, "/fishingspot").permitAll()
-                .antMatchers(HttpMethod.PUT, "/fishingspot").permitAll()
+                .antMatchers(HttpMethod.POST, "/fishingspots/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/fishingspots/**").permitAll()
+                .antMatchers(HttpMethod.PUT,"/fishingspots/**").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/rating").permitAll()
-                .antMatchers(HttpMethod.GET, "/rating").permitAll()
-                .antMatchers(HttpMethod.PUT, "/rating").permitAll()
+                .antMatchers(HttpMethod.POST, "/ratings/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/ratings/**").permitAll()
+                .antMatchers(HttpMethod.PUT,"/ratings/**").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/gear").permitAll()
-                .antMatchers(HttpMethod.GET, "/gear").permitAll()
-                .antMatchers(HttpMethod.PUT, "/gear").permitAll()
+                .antMatchers(HttpMethod.POST, "/gears/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/gears/**").permitAll()
+                .antMatchers(HttpMethod.PUT,"/gears/**").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/location").permitAll()
-                .antMatchers(HttpMethod.GET, "/location").permitAll()
-                .antMatchers(HttpMethod.PUT, "/location").permitAll()
-//                .antMatchers(HttpMethod.POST, "/users").permitAll()
-//                .antMatchers(HttpMethod.POST, "/users/create").permitAll()
-//                .antMatchers(HttpMethod.POST, "/users/register").permitAll()
-//
-//                .antMatchers("/**").authenticated()
-//
-//
-//                .antMatchers(HttpMethod.DELETE, "/users").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.DELETE, "/uploads").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.DELETE, "/fishingspots").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.DELETE, "/ratings").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.DELETE, "/gears").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.DELETE, "/locations").hasRole("ADMIN")
-//
-//
-//                .antMatchers("/admin").hasAuthority("ADMIN")
-//                .antMatchers("/secret").hasAuthority("ADMIN")
-//
-//                .antMatchers("/secret").hasAnyAuthority("ADMIN")
-//
-//                .antMatchers("/users").hasAnyAuthority("USER", "ADMIN")
-//                .antMatchers("/uploads").hasAnyAuthority("USER", "ADMIN")
-//                .antMatchers("/fishingspots").hasAnyAuthority("USER", "ADMIN")
-//                .antMatchers("/ratings").hasAnyAuthority("USER", "ADMIN")
-//                .antMatchers("/gears").hasAnyAuthority("USER", "ADMIN")
-//                .antMatchers("/locations").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/locations/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/locations/**").permitAll()
+                .antMatchers(HttpMethod.PUT,"/locations/**").permitAll()
 
+                .antMatchers(HttpMethod.PUT,"/single/**").permitAll()
+                .antMatchers(HttpMethod.PUT,"/download/**").permitAll()
+
+
+
+                .antMatchers("/secret").hasAuthority("ADMIN")
+                .antMatchers("/**").hasAnyAuthority("USER", "ADMIN")
 
                 .and()
                 .addFilterBefore(new JwtRequestFilter(jwtService, userDetailsService()), UsernamePasswordAuthenticationFilter.class)
@@ -118,40 +100,4 @@ public class SecurityConfig {
     }
 }
 
-
 //
-//                .antMatchers("/users").authenticated()
-//                .antMatchers("/uploads").authenticated()
-//                .antMatchers("/fishingspots").authenticated()
-//                .antMatchers("/ratings").authenticated()
-//                .antMatchers("/gears").authenticated()
-//                .antMatchers("/locations").authenticated()
-//
-//                .antMatchers(HttpMethod.POST, "/auth").permitAll()
-//                        .antMatchers(HttpMethod.GET, "/auth").permitAll()
-//                        .antMatchers(HttpMethod.PUT, "/auth").permitAll()
-//
-//                        .antMatchers(HttpMethod.POST, "/users").permitAll()
-//                        .antMatchers(HttpMethod.GET, "/users").permitAll()
-//                        .antMatchers(HttpMethod.PUT,"/users").permitAll()
-//
-//
-//                .antMatchers(HttpMethod.POST, "/upload").permitAll()
-//                        .antMatchers(HttpMethod.GET, "/upload").permitAll()
-//                        .antMatchers(HttpMethod.PUT,"/upload").permitAll()
-//
-//                        .antMatchers(HttpMethod.POST, "/fishingspot").permitAll()
-//                        .antMatchers(HttpMethod.GET, "/fishingspot").permitAll()
-//                        .antMatchers(HttpMethod.PUT,"/fishingspot").permitAll()
-//
-//                        .antMatchers(HttpMethod.POST, "/rating").permitAll()
-//                        .antMatchers(HttpMethod.GET, "/rating").permitAll()
-//                        .antMatchers(HttpMethod.PUT,"/rating").permitAll()
-//
-//                        .antMatchers(HttpMethod.POST, "/gear").permitAll()
-//                        .antMatchers(HttpMethod.GET, "/gear").permitAll()
-//                        .antMatchers(HttpMethod.PUT,"/gear").permitAll()
-//
-//                        .antMatchers(HttpMethod.POST, "/location").permitAll()
-//                        .antMatchers(HttpMethod.GET, "/location").permitAll()
-//                        .antMatchers(HttpMethod.PUT,"/location").permitAll()

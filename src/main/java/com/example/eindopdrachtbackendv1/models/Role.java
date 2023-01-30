@@ -20,6 +20,12 @@ public class Role {
 
     }
 
+    public Role(Long id, String rolename, Set<User> users) {
+        this.id = id;
+        this.rolename = rolename;
+        this.users = users;
+    }
+
     public Long getId() {
         return id;
     }
@@ -38,6 +44,14 @@ public class Role {
 
     public void setRolename(String rolename) {
         this.rolename = rolename;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }
 

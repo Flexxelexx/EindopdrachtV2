@@ -5,13 +5,8 @@ import com.example.eindopdrachtbackendv1.DTOS.Output.UserOutputDto;
 import com.example.eindopdrachtbackendv1.Repositories.RoleRepository;
 import com.example.eindopdrachtbackendv1.Repositories.UserRepository;
 import com.example.eindopdrachtbackendv1.Services.UserService;
-import com.example.eindopdrachtbackendv1.models.Rating;
 import com.example.eindopdrachtbackendv1.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -19,7 +14,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/users")

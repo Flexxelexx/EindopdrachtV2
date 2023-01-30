@@ -1,5 +1,7 @@
 package com.example.eindopdrachtbackendv1.models;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -20,6 +22,7 @@ public class Upload {
     private String speciesFish;
     @Column
     @Lob
+    @Type(type = "org.hibernate.type.BinaryType")
     private byte[] photoFish;
 
 

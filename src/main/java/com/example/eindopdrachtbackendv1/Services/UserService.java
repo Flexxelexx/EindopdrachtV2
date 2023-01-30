@@ -6,17 +6,11 @@ import com.example.eindopdrachtbackendv1.Exceptions.RecordNotFoundException;
 import com.example.eindopdrachtbackendv1.Repositories.*;
 import com.example.eindopdrachtbackendv1.models.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
-import javax.swing.text.html.Option;
+import javax.transaction.Transactional;
 import java.util.*;
 
 
@@ -57,6 +51,7 @@ public class UserService {
         return collection;
     }
 
+    @Transactional
     public UserOutputDto getUser(String username) {
         UserOutputDto dto;
         Optional<User> user = userRepository.findByUsername(username);
